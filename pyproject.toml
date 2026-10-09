@@ -1,0 +1,70 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "capy"
+version = "0.1.0"
+description = "Spatial thermal comfort analysis for biophilic building design"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "Tobias Kramer", email = "t.kramer@berkeley.edu" },
+]
+keywords = [
+    "thermal comfort",
+    "spatial analysis",
+    "building simulation",
+    "biophilic design",
+    "alliesthesia",
+    "grasshopper",
+    "honeybee",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "scipy>=1.10",
+    "pythermalcomfort>=2.0",
+    "matplotlib>=3.7",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "pytest-cov", "hatch", "ruff>=0.4", "pre-commit>=3.0"]
+docs = ["mkdocs", "mkdocstrings[python]", "mkdocs-material"]
+
+[project.urls]
+Homepage = "https://github.com/t-kramer/capy"
+Repository = "https://github.com/t-kramer/capy"
+Issues = "https://github.com/t-kramer/capy/issues"
+
+[tool.hatch.version]
+path = "capy/__init__.py"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["capy"]
+
+[tool.ruff]
+line-length = 100
+exclude = ["capy/grasshopper/"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"*/__init__.py" = ["F401"]
